@@ -3,8 +3,8 @@
 PHP script for website which allows to buy & sell used cars.  
 
 Examples:  
-* English: [Buy & Sell used Cars](http://eng.ipcar.net)  
-* Russian:  [Авторынок России и Украины](http://ipcar.net)  
+* English: eng.ipcar.net  
+* Russian: ipcar.net  
 
 Sponsored by [software development company DuxTeam](http://duxteam.com)  
 
