@@ -1,6 +1,9 @@
 # About IpCar project  
 
-PHP script for website which allows to buy & sell used cars.
+PHP script for website which allows to buy & sell used cars.  
+
+Sponsored by [software development company DuxTeam](http://duxteam.com)  
+
 
 
 # Server requirements:
