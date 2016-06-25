@@ -1,0 +1,29 @@
+<input type="hidden" id="scriptname" name="scriptname" value="{$scriptName}"/>
+<input type="hidden" id="searchparams" name="searchparams" value="{$searchparams}"/>
+
+{if $listOfAuto}
+    {foreach key=nr item=auto from=$listOfAuto}
+        {if $configuration->enableAdvertisement}
+            {if ($nr > 0) && (($nr % 4) == 0)}
+            <div class="box searchbox" style="text-align: center;">
+                <img src="http://placehold.it/468x60" />
+            </div>
+            {/if}
+        {/if}
+        {include file="controls/autosearchshortinfobox.html" auto=$auto}
+    {/foreach}
+    <br/>
+{else}
+    <div class="box detailsbox">
+        <a href="/" title="{#auto_market#}">{#auto_market#}</a>-><b>{#no_auto_found#}</b>
+    </div>
+    {if $configuration->enableAdvertisement}
+            <div class="box detailsbox">
+                <img src="http://placehold.it/336x280" />
+
+                <img src="http://placehold.it/336x280" />
+            </div>
+    {/if}
+{/if}
+
+{include file="controls/paging.html"}

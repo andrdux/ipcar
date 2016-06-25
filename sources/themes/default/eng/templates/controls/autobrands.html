@@ -1,0 +1,19 @@
+{if $qsmarks}
+    <div class="separatorline fullContentWidth">
+        <h2>{#auto_marks2#}</h2>
+    </div>
+    {foreach key=nr item=marklogo from=$qsmarks}
+        {if $configuration->enableAdvertisement}
+            {if ($nr > 0) && (($nr % 14) == 0) && ($nr < 30)}
+                <div style="width:100%;text-align: center;clear:both;">
+                    <img src="http://placehold.it/728x90" />
+                </div>
+                <br/>
+            {/if}
+        {/if}
+        <div class="autoMarkBigLogo">
+            <img src="{$configuration->wwwroot}/pictures/standard/autobrands/{$marklogo->mark_logo}.gif" alt="{#sell#} {$marklogo->mark_name}" title="{#sell#} {$marklogo->mark_name}" /><br/>
+            <a href="/search/autobrand/{$marklogo->mark_name|strip:''}/{$marklogo->id_mark}/" title="{#sell#} {$marklogo->mark_name}">{$marklogo->mark_name}</a>
+        </div>
+    {/foreach}
+{/if}

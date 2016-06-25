@@ -1,0 +1,29 @@
+<div class="box editbox">
+    {include file="controls/errorsummary.html"}
+
+    <form id="loginform" name="loginform" action="login.php?action=login" method="post">
+        <div class="separatorline">
+            <h2>{#login#}</h2>
+        </div>
+
+        <div style="float:left;width:200px;padding: 0px 0px 0px 0px;">
+            <label for="email">*{#email#}</label><br/>
+            <input type="text" id="email" name="email" maxlength="55" value="{$email}" class="editText"/><br/>
+
+            <label for="password">*{#password#}</label><br/>
+            <input type="password" id="password" name="password" maxlength="55" value="{$password}" class="editText"/><br/>
+
+            <a href="registeruser.php" title="{#register_user#}">{#register_user#}</a>&nbsp;<a href="restorepassword.php" title="{#forgot_password#}">{#forgot_password#}</a><br/>
+        </div> 
+        <div style="float:left;width:475px;padding: 0px 0px 0px 25px;">
+        {if $configuration->enableAdvertisement}
+            <img src="http://placehold.it/468x60" />
+        {/if}
+        </div>
+        <div class="btncontainer">
+            <input type="submit" value="{#login#}" class="stdbutton"/>
+        </div>
+    </form>
+</div>
+
+{include file="controls/markerrorfields.html"}

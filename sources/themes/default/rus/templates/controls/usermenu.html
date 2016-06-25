@@ -1,0 +1,23 @@
+<div class="box editbox">
+    <div class="separatorline">
+        <h2>{#my_auto#}</h2>
+    </div>
+
+    <div style="float:left;margin: 0px 0px 0px 81px;text-align: center;">
+        <a href="editprofile.php" title="{#edit_profile#}"><img class="userMenuImage" src="{$configuration->cssroot}/images/editprofile.png" alt="{#edit_profile#}" /></a><br/>
+        <a href="editprofile.php" title="{#edit_profile#}">{#edit_profile#}</a>
+    </div>
+    <div style="float:left;margin: 0px 0px 0px 25px;text-align: center;">
+        <a href="myauto.php" title="{#my_auto#}"><img class="userMenuImage" src="{$configuration->cssroot}/images/mycars.png" alt="{#my_auto#}" /></a><br/>
+        <a href="myauto.php" title="{#my_auto#}">{#my_auto#}</a>
+    </div>
+    <div class="btncontainer"></div>
+</div>
+{if $configuration->enableAdvertisement}
+<br/>
+    <div class="box detailsbox">
+        <img src="http://placehold.it/336x280" />
+
+        <img src="http://placehold.it/336x280" />
+    </div>
+{/if}

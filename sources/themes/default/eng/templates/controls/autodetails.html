@@ -1,0 +1,139 @@
+<div class="box detailsbox">
+    <a href="/" title="{#auto_market#}">{#auto_market#}</a>-><a href="/?action=search&country_id={$auto->country_id}&region_id={$auto->region_id}&city_id={$auto->city_id}" title="{#auto_market2#} {$auto->city_name}">{$auto->city_name}</a>-><a href="/?action=search&country_id={$auto->country_id}&region_id={$auto->region_id}&city_id={$auto->city_id}&id_mark={$auto->id_mark}" title="{#buy#} {$auto->mark_name}">{#buy#} {$auto->mark_name}</a>-><a href="/?action=search&country_id={$auto->country_id}&region_id={$auto->region_id}&city_id={$auto->city_id}&id_mark={$auto->id_mark}&id_model={$auto->id_model}" title="{#buy#} {$auto->mark_name} {$auto->model_name}">{#buy#} {$auto->mark_name} {$auto->model_name}</a>
+</div>
+<div class="box detailsbox">
+    <div style="float:left;margin: 0px 0px 10px 0px;width:380px;">
+        <h2>{#sell#} {$auto->mark_name} {$auto->model_name}</h2>
+        <h3>{$auto->modification}</h3>
+        {if $auto->urgent == 1}
+            <span class="urgent">{#urgent#}</span>
+        {/if}
+    </div>
+    <div style="float:left;margin: 0px 0px 10px 10px;width:292px;text-align: right;">
+        <table cellpadding="0" cellspacing="0" align="right">
+            <tr>
+                <td class="headerinfoimg"><img src="{$configuration->cssroot}/images/city.png" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}"/></td>
+                <td class="headerinfo">{$auto->city_name}</td>
+                <td class="headerinfoimg"><img src="{$configuration->cssroot}/images/price.png" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}"/></td>
+                <td class="headerinfo">{$configuration->currency}{$auto->price}</td>
+                <td class="headerinfoimg"><img src="{$configuration->cssroot}/images/date.png" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}"/></td>
+                <td class="headerinfodate">{$auto->updated|date_format:"%d.%m.%Y"}</td>
+            </tr>
+        </table>
+        <br/><br/>
+        {if $auto->sold > 0}
+            <span class="sold">{#sold#}</span>
+        {/if}
+    </div>
+    
+    <div style="clear: both;width:100%;">
+        {if $auto->photos}
+          {include file="controls/gallery.html"}
+          <br/>
+            {if $configuration->enableAdvertisement}
+                <img src="http://placehold.it/468x60" />
+                <br/>
+            {/if}
+          <img src="{$configuration->cssroot}/images/loop.png" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}"/><a href="/auto/photo/{$auto->mark_name|strip:''}/{$auto->mark_name|strip:''}_{$auto->model_name|strip:''}_{$auto->id}.html" title="{#photo#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" target="_blank" onclick="return openPhotoGallery('/auto/photo/{$auto->mark_name|strip:''}/{$auto->mark_name|strip:''}_{$auto->model_name|strip:''}_{$auto->id}.html');">{#view_large_photos#}</a>
+        {/if}
+    </div>
+
+    <div style="clear: both;width:100%;">
+        <div style="float:left;margin: 10px 0px 10px 0px;width:336px;">
+            <b>{#city#}:</b>&nbsp;{$auto->city_name}<br/>
+            <b>{#price#}:</b>&nbsp;{$configuration->currency}{$auto->price}<br/>
+            <b>{#year_of_creation#}:</b>&nbsp;{$auto->year}<br/>
+            <b>{#autostate#}:</b>&nbsp;{$auto->autostate_name}<br/>
+            <b>{#color#}:</b>&nbsp;{$auto->color_name}<br/>
+            <b>{#kpp#}:</b>&nbsp;{$auto->kpp_name}<br/>
+
+            {if $auto->cylinders}
+            <b>{#num_of_cylinders#}:</b>&nbsp;{$auto->cylinders}<br/>
+            {/if}
+            
+            {if $auto->notcustoms == 1}
+            <b>{#customs#}:</b>&nbsp;{#no_customs#}<br/>
+            {/if}
+
+            {if $auto->exchange == 1}
+            <b>{#exchange#}:</b>&nbsp;{#exchange_possible#}<br/>
+            {/if}
+
+            {if $auto->tuning == 1}
+            <b>{#tuning#}:</b>&nbsp;{$auto->tuningdesc}<br/>
+            {/if}
+        </div>
+
+        <div style="float:left;margin: 10px 0px 10px 10px;width:336px;">
+            <b>{#transmission#}:</b>&nbsp;{$auto->transmission_name}<br/>
+            <b>{#mileage#}:</b>&nbsp;{$auto->mileage}<br/>
+            <b>{#engine_volume#}:</b>&nbsp;{$auto->volume}<br/>
+
+            {if $auto->power}
+            <b>{#power#}:</b>&nbsp;{$auto->power}<br/>
+            {/if}
+
+            <b>{#carcase_type#}:</b>&nbsp;{$auto->carcase_name}<br/>
+            <b>{#fuel#}:</b>&nbsp;{$auto->fuel_name}<br/>
+            <b>{#fuel_supply#}:</b>&nbsp;{$auto->fuelsupply_name}<br/>
+
+            {if $auto->consumption}
+            <b>{#consumption#}:</b>&nbsp;{$auto->consumption}<br/>
+            {/if}
+
+            {if $auto->acceleration}
+            <b>{#acceleration#}:</b>&nbsp;{$auto->acceleration}<br/>
+            {/if}
+        </div>
+        <div style="clear: both;width:100%;">
+        </div>
+    </div>
+</div>
+
+{if $auto->description}
+<div class="box detailsbox stdmargintop">
+    <h2>{#description#}</h2>
+    {$auto->description}
+</div>
+{/if}
+
+<div class="box detailsbox stdmargintop">
+    <h2>{#contacts#}</h2>
+
+    {if ($auto->sold == 0)}
+    <b>{#fullname#}:</b>&nbsp;{$user->fio}<br/>
+    <b>{#phone#}:</b>&nbsp;{$user->phone1}{if $user->phone2},&nbsp;{$user->phone2}<br/>{/if}
+    {else}
+        {#contacts_hidden_because_auto_sold#}
+    {/if}
+</div>
+
+{if $auto->equipment}
+<div class="box detailsbox stdmargintop">
+    <h2>{#equipment#}</h2>
+        {foreach key=nr item=equipment from=$auto->equipment name=eqloop}
+            {if ($nr + 1) == 1 }
+            <div style="float:left;margin: 0px 0px 15px 0px;">
+            {/if}
+
+            {if ($nr % 20) == 0}
+            </div>
+            <div style="float:left;margin: 0px 0px 15px 25px;">
+            {/if}
+
+            {$equipment->name}<br/>
+
+            {if ($nr + 1) == $smarty.foreach.eqloop.total}
+            </div>
+            {/if}
+        {/foreach}
+    <div style="clear: both;width:100%;">
+    </div>
+</div>
+{/if}
+
+{if $configuration->enableAdvertisement}
+    <div class="box detailsbox">
+        <img src="http://placehold.it/468x60" />        
+    </div>
+{/if}

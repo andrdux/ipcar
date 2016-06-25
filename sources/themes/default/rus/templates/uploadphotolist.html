@@ -1,0 +1,14 @@
+{if $photos}
+<table cellpadding="0" cellspacing="0" style="margin: 0px auto 0px;">
+    <tr>
+        <td class="hcStandard">{#photo#}</td>
+        <td class="hcHighlite">{#actions#}</td>
+    </tr>
+    {foreach key=nr item=photo from=$photos}
+    <tr>
+        <td {if ($nr % 2) == 0 }class="cStandard"{else}class="cHighlite"{/if}><img src="{$photo->pathtodir}/{$photo->namesmall}" title="{$photo->namesmall}" border='0'/></td>
+        <td {if ($nr % 2) == 0 }class="cHighlite"{else}class="cHighlite2"{/if}><a href="#" onclick="return removephoto({$photo->id})">{#remove_photo#}</a></td>
+    </tr>
+    {/foreach}
+</table>
+{/if}

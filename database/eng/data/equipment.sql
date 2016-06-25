@@ -1,0 +1,7 @@
+USE `ipcar`;
+
+LOCK TABLES `equipment` WRITE;
+/*!40000 ALTER TABLE `equipment` DISABLE KEYS */;
+INSERT INTO `equipment` VALUES (1,'ABS',0),(2,'Driver''s Airbag',1),(3,'Passenger''s Airbag',2),(4,'Lateral Airbag',3),(5,'Window Airbag',4),(6,'Break Assist',5),(7,'CD-changer',6),(8,'EBD',7),(9,'Handsfree',8),(10,'Auto light control',9),(11,'Traction Control',10),(12,'Audio',11),(13,'Roof Rack',12),(14,'Rear Differential Locking',13),(15,'Computer',14),(16,'GAS Supply',15),(17,'Power Steering',16),(18,'Rain Sensor',17),(19,'Additional Gas Tank',18),(20,'Immobilizer',19),(21,'Catalyst',20),(22,'Climate Control',21),(23,'Air Conditioning',22),(24,'Headlights Corrector',23),(25,'Cruise Control',24),(26,'Xenon Headlights',25),(27,'Winch',26),(28,'Alloy Wheels',27),(29,'Sunroof',28),(30,'Radio',29),(31,'Navigation System',30),(32,'Heated Mirrors',31),(33,'Seat Heating',32),(34,'Headlight Washer',33),(35,'Wood',34),(36,'Parktronic',35),(37,'Front Armrest',36),(38,'Fog Lights',37),(39,'Split Back Seats',38),(40,'Height Adjustable Driver''s Seat',39),(41,'Height Adjustable Passenger''s Seat',40),(42,'Adjustable Steering Wheel',41),(43,'Alarm',42),(44,'Mobile Phone',43),(45,'Tinted Glass',44),(46,'Hook',45),(47,'Central Locking',46),(48,'Electric Antenna',47),(49,'Electric Driver''s Seat',48),(50,'Electric Passenger''s Seat',49),(51,'Electric Windows',50),(52,'Electric Mirrors',51);
+/*!40000 ALTER TABLE `equipment` ENABLE KEYS */;
+UNLOCK TABLES;

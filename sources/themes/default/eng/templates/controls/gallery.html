@@ -1,0 +1,23 @@
+<div class="gallerycontainer">
+    <div id="imageviewer" class="imageviewer">
+      <div id="progress" class="progress"></div>
+      {foreach item=photo from=$auto->photos}
+        {if $photo->default == 1}
+                <img id="imagepreview" src="{$auto->photodir}/{if $showbigphotos}{$photo->namebig}{else}{$photo->name}{/if}" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" />
+        {/if}
+      {/foreach}
+    </div>
+    <div class="thumbnailscontainer">
+      {foreach item=photo from=$auto->photos}
+      <div class="thumbnailitem"><img src="{$auto->photodir}/{$photo->namesmall}" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" onclick="loadPhoto('{$auto->photodir}/{if $showbigphotos}{$photo->namebig}{else}{$photo->name}{/if}');" /></div>
+      {/foreach}
+    </div>
+</div>
+<input type="hidden" id="emptyImageUrl" value="{$configuration->cssroot}/images/empty.gif"/>
+{if $configuration->enableAdvertisement}
+    {if $showbigphotos}
+        <div style="width:100%;text-align:center;">
+            <img src="http://placehold.it/728x90" />
+        </div>
+    {/if}
+{/if}

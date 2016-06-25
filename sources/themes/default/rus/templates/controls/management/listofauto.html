@@ -1,0 +1,62 @@
+<div class="separatorline">
+    <h2>{#listings#}</h2>
+</div>
+
+<input type="hidden" id="searchparams" name="searchparams" value="{$searchparams}"/>
+
+<form id="marketform" name="marketform" action="listofauto.php" method="get">
+    <div style="float:left;padding: 0px 0px 15px 0px;">
+        <label for="listingType"></label>{#listings#}:&nbsp;
+        {html_options name=listingType options=$listingTypes selected=$listingType class="editText"}<br/>
+    </div>
+
+    <div style="float:left;padding: 0px 0px 15px 25px;">
+        <label for="autoType"></label>{#automobiles#}:&nbsp;
+        {html_options name=autoType options=$autoTypes selected=$autoType class="editText"}<br/>
+    </div>
+
+    <div style="float:left;padding: 0px 0px 15px 25px;">
+        <input type="submit" value="{#show#}" class="bigbutton"/>
+    </div>
+</form>
+
+<div style="clear:both;">
+{if $listOfAuto}
+<table id="tblListOfAuto" class="stdtable" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="hcStandard" style="width: 130px;">{#photo#}</td>
+        <td class="hcHighlite">{#auto#}</td>
+        <td class="hcStandard">{#year#}</td>
+        <td class="hcHighlite">{#date_of_announcement#}</td>
+        <td class="hcStandard">{#status#}</td>
+        <td class="hcHighlite">{#user#}</td>
+        <td class="hcStandard">{#actions#}</td>
+    </tr>
+    {foreach key=nr item=auto from=$listOfAuto}
+    <tr>
+        <td class="cStandard"><a href="{$configuration->wwwroot}/autodetails.php?autoid={$auto->id}" title="{#view#}" target="_blank">{if $auto->smallphotoname}<img src="{$auto->photodir}/{$auto->smallphotoname}" title="{$auto->smallphotoname}" alt="{$auto->smallphotoname}" border='0'/>{else}<img src="{$configuration->cssroot}/images/nophoto90x90.gif" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" border='0'/>{/if}</a></td>
+        <td {if ($nr % 2) == 0 }class="cHighlite"{else}class="cHighlite2"{/if}>{$auto->mark_name} {$auto->model_name} {$auto->modification}</td>
+        <td {if ($nr % 2) == 0 }class="cStandard"{else}class="cHighlite"{/if}>{$auto->year}</td>
+        <td {if ($nr % 2) == 0 }class="cHighlite"{else}class="cHighlite2"{/if}>{$auto->updated|date_format:"%d.%m.%Y"}</td>
+        <td {if ($nr % 2) == 0 }class="cStandard"{else}class="cHighlite"{/if}>{if $auto->approved == 0}{#beingchecked#}{/if}{if $auto->approved == 1}{#approved#}{/if}{if $auto->approved == 2}{#refused#}{/if}</td>
+        <td {if ($nr % 2) == 0 }class="cHighlite nowrap"{else}class="cHighlite2 nowrap"{/if}>{$auto->user_email}</td>
+        <td class="cStandard"><a href="{$configuration->wwwroot}/autodetails.php?autoid={$auto->id}" title="{#view#}" target="_blank"><img src="{$configuration->cssroot}/images/mview.jpg" title="{#view#}" alt="{#view#}"/></a>&nbsp;<a href="{$configuration->wwwroot}/editauto.php?action=show&autoid={$auto->id}" title="{#edit#}"><img src="{$configuration->cssroot}/images/medit.jpg" title="{#edit#}" alt="{#edit#}"/></a>&nbsp;
+            <a href="#" title="{#approve#}" onclick="return confirmationApproveAuto({$auto->id});"><img src="{$configuration->cssroot}/images/mapprove.jpg" title="{#approve#}" alt="{#approve#}"/></a>&nbsp;<a href="#" title="{#refuse#}" onclick="return confirmationRefuseAuto({$auto->id});"><img src="{$configuration->cssroot}/images/mrefuse.jpg" title="{#refuse#}" alt="{#refuse#}"/></a>&nbsp;
+            <a href="#" title="{#sold#}" onclick="return confirmationSoldAuto({$auto->id});" ><img src="{$configuration->cssroot}/images/msold.jpg" title="{#sold#}" alt="{#sold#}"/></a>&nbsp;<a href="#" title="{#remove_auto#}" onclick="return confirmationRemoveAuto({$auto->id});"><img src="{$configuration->cssroot}/images/mremove.jpg" title="{#remove_auto#}" alt="{#remove_auto#}"/></a></td>
+    </tr>
+    {/foreach}
+</table>
+{else}
+    {#no_auto_for_search_criteria#}
+{/if}
+</div>
+
+<input type="hidden" id="hdnWebSiteRoot" value="{$configuration->wwwroot}"/>
+<input type="hidden" id="hdnApproveMessage" value="{#really_approve#}"/>
+<input type="hidden" id="hdnRefuseMessage" value="{#really_refuse#}"/>
+<input type="hidden" id="hdnRemoveMessage" value="{#really_remove#}"/>
+<input type="hidden" id="hdnSoldMessage" value="{#really_sold#}"/>
+<input type="hidden" id="hdnCurrentPage" value="{$page}"/>
+
+{include file="controls/paging.html"}
+

@@ -1,0 +1,22 @@
+{if $qsmodels}
+    <div class="rightpanelheader">
+        <h2>{#selection_of_auto_model#} {$qsselectedmark->mark_name}</h2>
+    </div>
+    <div class="autoModels">
+        {foreach item=qsmodel from=$qsmodels}
+            <a href="/search/automodel/{$qsselectedmark->mark_name|strip:''}_{$qsmodel->model_name|strip:''}/{$qsmodel->id_model}/" title="{#sell#} {$qsselectedmark->mark_name} {$qsmodel->model_name}">{$qsselectedmark->mark_name} {$qsmodel->model_name}</a><br/>
+        {/foreach}
+    </div>
+{/if}
+
+{if $qsmarks}
+    <div class="rightpanelheader">
+        <h2>{#quick_search_auto#}</h2>
+    </div>
+    {foreach item=marklogo from=$qsmarks}
+        <div class="autoMarkLogo">
+            <img src="{$configuration->wwwroot}/pictures/standard/autobrandsmedium/{$marklogo->mark_logo}.jpg" alt="{#sell#} {$marklogo->mark_name}" title="{#sell#} {$marklogo->mark_name}" /><br/>
+            <a href="/search/autobrand/{$marklogo->mark_name|strip:''}/{$marklogo->id_mark}/" title="{#sell#} {$marklogo->mark_name}">{$marklogo->mark_name}</a>
+        </div>
+    {/foreach}
+{/if}

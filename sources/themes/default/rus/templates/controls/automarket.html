@@ -1,0 +1,92 @@
+<div class="box">
+    <form id="marketform" name="marketform" action="/" target="_blank" method="get">
+        <input type="hidden" id="action" name="action" value="search"/>
+        
+        <div class="separatorline">
+            <h2>{#search_auto#}</h2>
+        </div>
+        
+        <div style="float:left;padding: 0px 0px 0px 0px;">
+            <label for="id_mark">{#brand_name#}</label><br/>
+            {html_options name=id_mark options=$marks keyname="id_mark" valuename="mark_name" selected=$searchfilter->id_mark notselectedkey="-" notselectedvalue=#any_she# onChange="loadAutoModels($('#'+this.id).val(), 'id_model')" class="stdText"}<br/>
+
+            <label for="id_model">{#model_name#}</label><br/>
+            {html_options name=id_model options=$models keyname="id_model" valuename="model_name" selected=$searchfilter->id_model notselectedkey="-" notselectedvalue=#any_she# class="stdText"}<br/>
+
+            <label for="fuel_id">{#fuel#}</label><br/>
+            {html_options name=fuel_id options=$fuel keyname="id" valuename="name" selected=$searchfilter->fuel_id notselectedkey="-" notselectedvalue=#any_it# class="stdText"}<br/>
+
+            <label for="carcase_id">{#carcase_type#}</label><br/>
+            {html_options name=carcase_id options=$carcases keyname="id" valuename="name" selected=$searchfilter->carcase_id notselectedkey="-" notselectedvalue=#any_he# class="stdText"}
+        </div>
+
+        <div style="float:left;padding: 0px 0px 0px 24px;">
+            <label for="kpp_id">{#kpp#}</label><br/>
+            {html_options name=kpp_id options=$kpp keyname="id" valuename="name" selected=$searchfilter->kpp_id notselectedkey="-" notselectedvalue=#any_she# class="stdText"}<br/>
+
+            <label for="priceFrom">{#price#}, {$configuration->currency}</label><br/>
+            <input type="text" id="priceFrom" name="priceFrom" value="{$searchfilter->priceFrom}" class="shortcontrol" />&nbsp;{#upto#}&nbsp;<input type="text" id="priceTo" name="priceTo" value="{$searchfilter->priceTo}" class="shortcontrol"/><br/>
+
+            <label for="yearFrom">{#year_of_creation#}</label><br/>
+            <input type="text" id="yearFrom" name="yearFrom" value="{$searchfilter->yearFrom}" class="shortcontrol"/>&nbsp;{#upto#}&nbsp;<input type="text" id="yearTo" name="yearTo" value="{$searchfilter->yearTo}" class="shortcontrol" /><br/>
+
+            <label for="volumeFrom">{#engine_volume#}</label><br/>
+            <input type="text" id="volumeFrom" name="volumeFrom" value="{$searchfilter->volumeFrom}" class="shortcontrol" />&nbsp;{#upto#}&nbsp;<input type="text" id="volumeTo" name="volumeTo" value="{$searchfilter->volumeTo}" class="shortcontrol"/>
+
+        </div>
+
+        <div style="float:left;padding: 0px 0px 0px 24px;">
+            <label for="transmission_id">{#transmission#}</label><br/>
+            {html_options name=transmission_id options=$transmissions keyname="id" valuename="name" selected=$searchfilter->transmission_id notselectedkey="-" notselectedvalue=#any_he# class="stdText"}<br/>
+
+            <label for="color_id">{#color#}</label><br/>
+            {html_options name=color_id options=$color keyname="id" valuename="name" selected=$searchfilter->color_id notselectedkey="-" notselectedvalue=#any_he# class="stdText"}<br/>
+
+            <label for="autostate_id">{#autostate#}</label><br/>
+            {html_options name=autostate_id options=$autostates keyname="id" valuename="name" selected=$searchfilter->autostate_id notselectedkey="-" notselectedvalue=#any_it# class="stdText"}<br/>
+
+            <label><input type="checkbox" id="photorequired" name="photorequired" value="1" {if $searchfilter->photorequired == 1}checked{/if}/>&nbsp;{#photo_required#}</label>
+        </div>
+
+        <div style="float:left;padding: 0px 0px 0px 24px;">
+            <label for="country_id">{#country#}</label><br/>
+            {html_options name=country_id options=$countries keyname="id" valuename="name" selected=$searchfilter->country_id notselectedkey="-" notselectedvalue=#any_she# onChange="loadRegions($('#'+this.id).val(), 'region_id', 'city_id')" class="stdText"}<br/>
+
+            <label for="region_id">{#region#}</label><br/>
+            {html_options name=region_id options=$regions keyname="id" valuename="name" selected=$searchfilter->region_id notselectedkey="-" notselectedvalue=#any_she# onChange="loadCities($('#'+this.id).val(), 'city_id')" class="stdText"}<br/>
+
+            <label for="city_id">{#city#}</label><br/>
+            {html_options name=city_id options=$cities keyname="id" valuename="name" selected=$searchfilter->city_id notselectedkey="-" notselectedvalue=#any_he# class="stdText"}<br/>
+
+            <label><input type="checkbox" id="urgentrequired" name="urgentrequired" value="1" {if $searchfilter->urgentrequired == 1}checked{/if}/>&nbsp;{#urgent_required#}</label>
+        </div>
+        
+        <div style="clear: both;width: 95%;text-align: right;">
+            <a href="sell-car.html">{#sell_automobile#}</a>&nbsp;&nbsp;&nbsp;
+            <label><input type="checkbox" id="exchangerequired" name="exchangerequired" value="1" {if $searchfilter->exchangerequired == 1}checked{/if}/>&nbsp;{#exchange_required#}</label>&nbsp;
+            <label><input type="checkbox" id="showsold" name="showsold" value="1" {if $searchfilter->showsold == 1}checked{/if}/>&nbsp;{#show_sold#}</label>&nbsp;
+            <label><input type="checkbox" id="tuningrequired" name="tuningrequired" value="1" {if $searchfilter->tuningrequired == 1}checked{/if}/>&nbsp;{#tuning_required#}</label>&nbsp;
+            <label><input type="checkbox" id="customsrequired" name="customsrequired" value="1" {if $searchfilter->customsrequired == 1}checked{/if}/>&nbsp;{#customs_required#}</label>&nbsp;
+            <input type="submit" value="{#search#}" class="stdbutton"/>
+        </div>
+    </form>
+</div>
+<br/>
+{if $listOfAuto}
+    <div class="box">
+        <div class="separatorline">
+            <h2>{#last_added_auto#}</h2>
+        </div>
+    </div>
+    {foreach key=nr item=auto from=$listOfAuto}
+        {include file="controls/autosearchshortinfobox.html" auto=$auto}
+    {/foreach}
+{/if}
+{if $configuration->enableAdvertisement}
+    <div class="box detailsbox">
+        <img src="http://placehold.it/336x280" />
+
+        <img src="http://placehold.it/336x280" />        
+    </div>
+{/if}
+<br/>

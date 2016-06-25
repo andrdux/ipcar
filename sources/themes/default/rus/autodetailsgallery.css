@@ -1,0 +1,38 @@
+.gallerycontainer{
+    width: 686px;
+    height: 300px;
+}
+
+.imageviewer{
+    width: 400px;
+    height: 300px;
+    float: left;
+    overflow: hidden;
+}
+
+.thumbnailscontainer{
+    width: 284px;
+    height: 300px;
+    border: solid 1px #cccccc;
+    overflow: auto;
+}
+
+.thumbnailitem{
+    float: left;
+    margin:5px 5px 5px 5px;
+    padding:0px 0px 0px 0px;
+    cursor:pointer;
+    width:120px;
+    height:90px;
+    text-align: center;
+    vertical-align: middle;
+    border:solid 1px #cccccc;
+    overflow: hidden;
+}
+
+.progress{
+    width: 48px;
+    height: 48px;
+    display: none;
+    background:transparent url('images/loader.gif') no-repeat;
+}

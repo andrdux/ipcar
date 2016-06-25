@@ -1,0 +1,43 @@
+body{
+    background:none #ffffff !important;
+}
+
+.gallerycontainer{
+    width: 1086px;
+    height: 600px;
+}
+
+.imageviewer{
+    width: 800px;
+    height: 600px;
+    float: left;
+    overflow: hidden;
+}
+
+.thumbnailscontainer{
+    width: 284px;
+    height: 600px;
+    overflow: auto;
+    border: solid 1px #cccccc;
+    float: left;
+}
+
+.thumbnailitem{
+    float: left;
+    margin:5px 5px 5px 5px;
+    padding:0px 0px 0px 0px;
+    cursor:pointer;
+    width:120px;
+    height:90px;
+    text-align: center;
+    vertical-align: middle;
+    border:solid 1px #cccccc;
+    overflow: hidden;
+}
+
+.progress{
+    width: 48px;
+    height: 48px;
+    display: none;
+    background:transparent url('images/loader.gif') no-repeat;
+}

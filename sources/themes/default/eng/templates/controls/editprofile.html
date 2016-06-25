@@ -1,0 +1,40 @@
+<div class="box editbox">
+    {include file="controls/errorsummary.html"}
+    <form id="profileform" name="profileform" action="editprofile.php?action=save" method="post">
+        <div class="separatorline">
+            <h2>{#edit_profile#}</h2>
+        </div>
+
+        <div style="float:left;padding: 0px 0px 0px 0px;">
+            <label for="email">*{#email#}</label><br/>
+            <input type="text" id="email" name="email" maxlength="55" value="{$email}" class="editText"/><br/>
+
+            <label for="newpassword">*{#new_password#}</label><br/>
+            <input type="password" id="newpassword" name="newpassword" maxlength="55" value="" class="editText"/><br/>
+
+            <label for="fio">*{#fullname#}</label><br/>
+            <input type="text" id="fio" name="fio" maxlength="100" value="{$user->fio}" class="editText"/><br/>
+        </div>
+
+        <div style="float:left;padding: 0px 0px 0px 25px;">
+            <label for="phone1">*{#phone#} 1</label><br/>
+            <input type="text" id="phone1" name="phone1" maxlength="55" value="{$user->phone1}" class="editText"/><br/>
+
+            <label for="phone2">{#phone#} 2</label><br/>
+            <input type="text" id="phone2" name="phone2" maxlength="55" value="{$user->phone2}" class="editText"/><br/>
+        </div>
+        
+        <div class="btncontainer">
+            <input type="submit" value="{#save#}" class="stdbutton"/>&nbsp;<input type="button" onclick="document.location='usermenu.php'" value="{#cancel#}" class="stdbutton"/>
+        </div>
+    </form>
+</div>
+{if $configuration->enableAdvertisement}
+<br/>
+    <div class="box detailsbox">
+        <img src="http://placehold.it/336x280" />
+
+        <img src="http://placehold.it/336x280" />        
+    </div>
+{/if}
+{include file="controls/markerrorfields.html"}

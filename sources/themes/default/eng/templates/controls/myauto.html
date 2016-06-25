@@ -1,0 +1,116 @@
+<div class="box editbox">
+    <div class="separatorline">
+         <h2>{#my_auto#}</h2>
+    </div>
+
+    {if $userauto}
+    <table class="stdtable" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="hcStandard" style="width: 130px;">{#photo#}</td>
+            <td class="hcHighlite">{#auto#}</td>
+            <td class="hcStandard">{#year#}</td>
+            <td class="hcHighlite">{#date_of_announcement#}</td>
+            <td class="hcStandard">{#status#}</td>
+            <td class="hcHighlite">{#actions#}</td>
+        </tr>
+    {foreach key=nr item=auto from=$userauto}
+        <tr>
+            <td class="cStandard">{if $auto->smallphotoname}<img src="{$auto->photodir}/{$auto->smallphotoname}" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" border='0'/>{else}<img src="{$configuration->cssroot}/images/nophoto90x90.gif" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" border='0'/>{/if}</td>
+            <td {if ($nr % 2) == 0 }class="cHighlite"{else}class="cHighlite2"{/if}>{$auto->mark_name} {$auto->model_name}</td>
+            <td {if ($nr % 2) == 0 }class="cStandard"{else}class="cHighlite"{/if}>{$auto->year}</td>
+            <td {if ($nr % 2) == 0 }class="cHighlite"{else}class="cHighlite2"{/if}>{$auto->updated|date_format:"%d.%m.%Y"}</td>
+            <td {if ($nr % 2) == 0 }class="cStandard"{else}class="cHighlite"{/if}>{if $auto->approved == 0}{#beingchecked#}{/if}{if $auto->approved == 1}{#approved#}{/if}{if $auto->approved == 2}{#refused#}{/if}</td>
+            <td {if ($nr % 2) == 0 }class="cHighlite nowrap"{else}class="cHighlite2 nowrap"{/if}><a href="editauto.php?autoid={$auto->id}" title="{#edit#}">{#edit#}</a><br/><br/>
+                <a href="#" title="{#add_photo#}" onclick="return setDialogUploader(true, {$auto->id})">{#add_photo#}</a><br/><br/>
+                <a href="#" title="{#mark_as_sold#}" onclick="return setDialogSold(true, 'editauto.php?action=sold&autoid={$auto->id}')">{#sold#}</a></td>
+        </tr>
+    {/foreach}
+    </table>
+    {else}
+        <div class="centercontainer">
+            {#no_auto_added#}&nbsp;<a href="addauto.php" title="{#sell_auto#}">{#sell_auto#}</a>
+        </div>
+    {/if}
+</div>
+{if $configuration->enableAdvertisement}
+<br/>
+    <div class="box detailsbox">
+        <img src="http://placehold.it/336x280" />
+
+        <img src="http://placehold.it/336x280" />        
+    </div>
+{/if}
+<div id="dlgConfirmSold" style="width:400px;height:130px;display:none;">
+        <p style="line-height:40px;text-align:center;padding: 0px 0px 0px 0px;">{#do_you_realy_want_to_mark_auto_sold#}</p>
+        <br/>
+        <div style="width:100%;text-align: center;">
+            <input type="button" id="btnMarkSold" value="{#yes#}" onclick="dlgSoldRedirectToAction()" class="stdbutton"/>&nbsp;
+            <input type="button" id="btnCancelSold" value="{#no#}" onclick="setDialogSold(false, '')" class="stdbutton"/>
+        </div>
+</div>
+
+<div id="dlgPhotoUpload" style="display:none;">
+ <div class="box editbox" style="width:95%;text-align: center;color: #000000;">
+    
+     <div id="errorContainer" style="display:none;">
+        <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="vertical-align: top; padding: 10px 0px 10px 10px;">
+                        <span class="ui-icon ui-icon-alert" style="float: left; margin: 0px 5px 0px 0px;"></span><strong>{#attantion_there_are_errors#}:</strong><br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; padding: 0px 0px 15px 30px;">
+                        <span id="photoMsgError"></span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br/>
+    </div>
+
+    <div id="successContainer" style="display:none;">
+            <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
+                <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="vertical-align: top; padding: 10px 0px 10px 10px;">
+                            <span class="ui-icon ui-icon-check" style="float: left; margin: 0px 5px 0px 0px;"></span><span id="photoMsgSuccess"></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+    </div>
+
+     <table border="0" cellpadding="0" cellspacing="0">
+         <tr>
+             <td style="vertical-align: top;text-align: left;">
+                <form id="photoform" name="photoform" method="post" action="handlers/photouploader.php" enctype="multipart/form-data">
+                        <input id="autoid" name="autoid" type="hidden" value=""/>
+                        <input type="hidden" id="action" name="action" value="upload"/>
+                        <input type="file" id="file" name="file" />
+                        <input type="submit" id="btnUploadPhoto" onclick="$.blockUI();" value="{#upload_photo#}" class="stdbutton" />
+                </form>
+
+                <div style="margin: 15px 0px 0px 0px;">
+                    {#choose_file_to_load#}<br/><br/>
+                    {#only_this_file_extensions_allowed#}:<br/>
+                    <ul style="margin:10px 0px 0px 30px;">
+                    {foreach item=extension from=$allowedExtensions}
+                    <li><b>{$extension}</b></li>
+                    {/foreach}
+                    </ul>
+                </div>
+             </td>
+             <td style="vertical-align: top;text-align: left;padding: 0px 0px 0px 10px;">
+                <div id="photos" style="width:240px;height:400px;overflow:auto;border: solid 1px #cccccc;"></div>
+             </td>
+         </tr>
+     </table>
+     
+ </div>
+</div>
+
+<input type="hidden" id="removePhotoConfirmationText" value="{#do_you_realy_want_to_remove_photo#}"/>
+<input type="hidden" id="lblUploadPhoto" value="{#upload_photo#}"/>

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>{if $page_title}{$page_title}{else}{#head_title#}{/if}</title>
+        <meta name="keywords" content="{if $page_keywords}{$page_keywords}{else}{#meta_keywords#}{/if}" />
+        <meta name="description" content="{if $page_description}{$page_description}{else}{#meta_description#}{/if}" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+      {if $page_css}
+       {foreach from=$page_css item="cssfile"}
+        <link type="text/css" rel="stylesheet" href="{$configuration->cssroot}/{$cssfile}" />
+       {/foreach}
+      {/if}
+      {if $page_js}
+       {foreach from=$page_js item="jsfile"}
+        <script type="text/javascript" src="{$configuration->wwwroot}/scripts/{$jsfile}"></script>
+       {/foreach}
+      {/if}
+      {literal}
+      <script type="text/javascript">
+          $(function() {
+		$("#dvLeftMenu").accordion({ fillSpace: true });
+          });
+      </script>
+      {/literal}
+    </head>
+    <body>
+        <!-- Left Menu-->
+        <div style="float:left;padding: 0px 0px 0px 0px;">
+            <div id="dvLeftMenu">
+                <h3><a href="#">{#management#}</a></h3>
+                <div>
+                    <a class="leftMenu" href="listofauto.php">{#listings#}</a><br/><br/>
+                    <a class="leftMenu" href="users.php">{#users#}</a>
+                </div>
+                <h3><a href="#">{#application#}</a></h3>
+                <div>
+                    <a href="/login.php?action=logout" title="{#logout#}">{#logout#}</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content-->
+        <div style="float:left;padding: 0px 0px 0px 20px;width:1000px;">
+            {if $page_name eq "ListOfAuto"}
+                {include file="controls/management/listofauto.html"}
+            {/if}
+            {if $page_name eq "Users"}
+                {include file="controls/management/users.html"}
+            {/if}
+        </div>
+        
+        <div style="clear:both">
+        </div>
+
+        <div id="blockUIMessage" style="display:none;">
+            <span style="color:#000000 !important;">{#please_wait#}</span>
+        </div>
+        <input type="hidden" id="loaderImageUrl" value="{$configuration->cssroot}/images/loadersmall.gif"/>
+
+    </body>
+</html>

@@ -1,0 +1,200 @@
+{if $maxNumOfNotApprovedAutoReached}
+<div class="box editbox">
+    {include file="controls/errorsummary.html"}
+</div>
+{else}
+<div class="box editbox">
+    {include file="controls/errorsummary.html"}
+    <form id="autoform" name="autoform" action="{$formaction}" method="post">
+        <input type="hidden" id="auto_id" name="auto_id" value="{$auto->id}"/>
+
+        <div class="separatorline">
+            <h2>{#sell_auto#}</h2>
+        </div>
+
+        <div style="float:left;padding: 0px 0px 15px 0px;">
+            <label for="id_mark">*{#brand_name#}</label><br/>
+            {html_options name=id_mark options=$marks keyname="id_mark" valuename="mark_name" selected=$auto->id_mark notselectedkey="-" notselectedvalue=#choose_brand# onChange="loadAutoModels($('#'+this.id).val(), 'id_model')" class="editText"}<br/>
+
+            <label for="id_model">*{#model_name#}</label><br/>
+            {html_options name=id_model options=$models keyname="id_model" valuename="model_name" selected=$auto->id_model notselectedkey="-" notselectedvalue=#choose_model# class="editText"}<br/>
+
+            <label for="modification">{#modification_name#}</label><br/>
+            <input type="text" id="modification" name="modification" maxlength="25" value="{$auto->modification}" class="editText" watermark="{#for_example#}: Sport"/><br/>
+
+            <label for="price">*{#price#}, {$configuration->currency}</label><br/>
+            <input type="text" id="price" name="price" value="{$auto->price}" class="editText" watermark="{#for_example#}: 15000"/><br/>
+
+            <label for="year">*{#year_of_creation#}</label><br/>
+            <input type="text" id="year" name="year" value="{$auto->year}" class="editText" watermark="{#for_example#}: 2005"/><br/>
+
+            <label for="mileage">*{#mileage#}, {#mileage_points#}</label><br/>
+            <input type="text" id="mileage" name="mileage" value="{$auto->mileage}" class="editText" watermark="{#for_example#}: 75350"/>
+        </div>
+
+        <div style="float:left;padding: 0px 0px 15px 25px;">
+            <label for="volume">*{#engine_volume#}, {#engine_volume_points#}</label><br/>
+            <input type="text" id="volume" name="volume" value="{$auto->volume}" class="editText" watermark="{#for_example#}: 1800"/><br/>
+
+            <label for="transmission_id">*{#transmission#}</label><br/>
+            {html_options name=transmission_id options=$transmissions keyname="id" valuename="name" selected=$auto->transmission_id notselectedkey="-" notselectedvalue=#choose_transmission# class="editText"}<br/>
+
+            <label for="carcase_id">*{#carcase_type#}</label><br/>
+            {html_options name=carcase_id options=$carcases keyname="id" valuename="name" selected=$auto->carcase_id notselectedkey="-" notselectedvalue=#choose_carcase# class="editText"}<br/>
+
+            <label for="fuel_id">*{#fuel#}</label><br/>
+            {html_options name=fuel_id options=$fuel keyname="id" valuename="name" selected=$auto->fuel_id notselectedkey="-" notselectedvalue=#choose_fuel# class="editText"}<br/>
+
+            <label for="fuelsupply_id">*{#fuel_supply#}</label><br/>
+            {html_options name=fuelsupply_id options=$fuelsupply keyname="id" valuename="name" selected=$auto->fuelsupply_id notselectedkey="-" notselectedvalue=#choose_fuelsupply# class="editText"}<br/>
+
+            <label for="power">{#power#}, {#power_points#}</label><br/>
+            <input type="text" id="power" name="power" value="{$auto->power}" class="editText" watermark="{#for_example#}: 120"/>
+        </div>
+
+        <div style="float:left;padding: 0px 0px 15px 25px;">
+            <label for="consumption">{#consumption#}, {#consumption_points#}</label><br/>
+            <input type="text" id="consumption" name="consumption" value="{$auto->consumption}" class="editText" watermark="{#for_example#}: 9"/><br/>
+
+            <label for="acceleration">{#acceleration#}, {#acceleration_points#}</label><br/>
+            <input type="text" id="acceleration" name="acceleration" value="{$auto->acceleration}" class="editText" watermark="{#for_example#}: 7"/><br/>
+
+            <label for="kpp_id">*{#kpp#}</label><br/>
+            {html_options name=kpp_id options=$kpp keyname="id" valuename="name" selected=$auto->kpp_id notselectedkey="-" notselectedvalue=#choose_kpp# class="editText"}<br/>
+
+            <label for="cylinders">{#num_of_cylinders#}</label><br/>
+            <input type="text" id="cylinders" name="cylinders" maxlength="55" value="{$auto->cylinders}" class="editText" watermark="{#for_example#}: V6"/><br/>
+
+            <label for="color_id">*{#color#}</label><br/>
+            {html_options name=color_id options=$color keyname="id" valuename="name" selected=$auto->color_id notselectedkey="-" notselectedvalue=#choose_color# class="editText"}<br/>
+
+            <label for="autostate_id">*{#autostate#}</label><br/>
+            {html_options name=autostate_id options=$autostates keyname="id" valuename="name" selected=$auto->autostate_id notselectedkey="-" notselectedvalue=#choose_autostate# class="editText"}
+        </div>
+
+        <div class="separatorline">
+            <h2>{#description#}</h2>
+        </div>
+
+        <div style="width: 100%;">
+            <textarea id="description" name="description">{$auto->description}</textarea>
+        </div>
+        <br/>
+        <label><input type="checkbox" id="exchange" name="exchange" value="1" {if $auto->exchange == 1}checked{/if}/>&nbsp;{#exchange_possible#}</label>&nbsp;
+
+        <label><input type="checkbox" id="notcustoms" name="notcustoms" value="1" {if $auto->notcustoms == 1}checked{/if}/>&nbsp;{#no_customs#}</label>&nbsp;
+
+        <label><input type="checkbox" id="urgent" name="urgent" value="1" {if $auto->urgent == 1}checked{/if}/>&nbsp;{#urgent#}</label>&nbsp;
+
+        <label><input type="checkbox" id="tuning" name="tuning" value="1" onClick="showTuningDescription($('#'+this.id).attr('checked'),'blocktuningdesc')" {if $auto->tuning == 1}checked{/if}/>&nbsp;{#tuning#}</label>
+        <br/><br/>
+        <div id="blocktuningdesc" style="display:{if $auto->tuning == 1}block{else}none{/if};">
+            <label for="tuningdesc">{#tuning_description#}</label><br/>
+            <textarea id="tuningdesc" name="tuningdesc">{$auto->tuningdesc}</textarea>
+        </div>
+
+        <div class="separatorline">
+            <h2>{#auto_location#}</h2>
+        </div>
+
+        <div style="float:left;padding: 0px 0px 15px 0px;">
+            <label for="country_id">*{#country#}</label><br/>
+            {html_options name=country_id options=$countries keyname="id" valuename="name" selected=$auto->country_id notselectedkey="-" notselectedvalue=#choose_country# onChange="loadRegions($('#'+this.id).val(), 'region_id', 'city_id')" class="editText"}<br/>
+        </div>
+
+        <div style="float:left;padding: 0px 0px 15px 25px;">
+            <label for="region_id">*{#region#}</label><br/>
+            {html_options name=region_id options=$regions keyname="id" valuename="name" selected=$auto->region_id notselectedkey="-" notselectedvalue=#choose_region# onChange="loadCities($('#'+this.id).val(), 'city_id')" class="editText"}<br/>
+        </div>
+
+        <div style="float:left;padding: 0px 0px 15px 25px;">
+            <label for="city_id">*{#city#}</label><br/>
+            {html_options name=city_id options=$cities keyname="id" valuename="name" selected=$auto->city_id notselectedkey="-" notselectedvalue=#choose_city# class="editText"}<br/>
+        </div>
+
+        {if ($user == null) || ($user->id <= 0)}
+        <div class="separatorline">
+            <h2>{#contacts#}</h2>
+        </div>
+        
+        <label><input type="checkbox" id="useralreadyregistered" name="useralreadyregistered" value="1" onClick="showCreateUserInfo(!$('#'+this.id).attr('checked'), 'blockCreateUserInfo')" {if $useralreadyregistered == 1}checked{/if}/>&nbsp;{#already_registered#}</label><br/><br/>
+
+        <div style="float:left;padding: 0px 0px 15px 0px;">
+            <label for="email">*{#email#}</label><br/>
+            <input type="text" id="email" name="email" maxlength="55" value="{$user->email}" class="editText"/><br/>
+
+            <label for="password">*{#password#}</label><br/>
+            <input type="password" id="password" name="password" maxlength="55" value="{$user->password}" class="editText"/><br/>
+        </div>
+        <div id="blockCreateUserInfo" style="display:{if $useralreadyregistered == 1}none{else}block{/if};float:left;padding: 0px 0px 15px 25px;">
+            <div style="float:left;padding: 0px 0px 0px 0px;">
+                <label for="fio">*{#fullname#}</label><br/>
+                <input type="text" id="fio" name="fio" maxlength="100" value="{$user->fio}" class="editText"/><br/>
+
+                <label for="phone1">*{#phone#} 1</label><br/>
+                <input type="text" id="phone1" name="phone1" maxlength="55" value="{$user->phone1}" class="editText"/><br/>
+
+                <label for="phone2">{#phone#} 2</label><br/>
+                <input type="text" id="phone2" name="phone2" maxlength="55" value="{$user->phone2}" class="editText"/>
+            </div>
+            <div style="float:left;padding: 0px 0px 0px 25px;">
+                <img src="handlers/captcha.php" width="200px" height="50px" alt="{#validation_code#}" title="{#validation_code#}"/><br/>
+                <label for="validcode">*{#validation_code#}</label><br/>
+                <input type="text" id="validcode" name="validcode" class="editText"/>
+            </div>
+        </div>
+        {/if}
+
+        <div class="separatorline">
+            <h2>{#equipment#}</h2>
+        </div>
+        
+        {if $allequipment}
+        {foreach key=nr item=equipment from=$allequipment name=eqloop}
+            {assign var=equipmentchecked value=''}
+            {if $auto->equipment}
+                {foreach item=autoequipment from=$auto->equipment}
+                  {if $autoequipment->id == $equipment->id}
+                    {assign var=equipmentchecked value='true'}
+                  {/if}
+                {/foreach}
+            {/if}
+
+        {if ($nr + 1) == 1 }
+        <div style="float:left;margin: 0px 0px 15px 0px;">
+        {/if}
+
+        {if ($nr % 20) == 0 }
+        </div>
+        <div style="float:left;margin: 0px 0px 15px 25px;">
+        {/if}
+
+        <label><input type="checkbox" name="equipment[]" value="{$equipment->id}" {if $equipmentchecked}checked{/if}/>&nbsp;{$equipment->name}</label><br/><br/>
+
+        {if ($nr + 1) == $smarty.foreach.eqloop.total}
+        </div>
+        {/if}
+
+        {/foreach}
+        {/if}
+
+        <div class="btncontainer">
+            {if ($auto == null) || ($auto->id <= 0)}
+            <input type="submit" value="{#add_listing#}" class="bigbutton"/>
+            {else}
+            <input type="submit" value="{#save_listing#}" class="bigbutton"/>&nbsp;<input type="button" onclick="document.location='myauto.php'" value="{#cancel#}" class="bigbutton"/>
+            {/if}
+        </div>
+    </form>
+</div>
+
+{if $configuration->enableAdvertisement}
+    <br/>
+    <div class="box detailsbox">
+        <img src="http://placehold.it/336x280" />
+
+        <img src="http://placehold.it/336x280" />
+    </div>
+{/if}
+{include file="controls/markerrorfields.html"}
+{/if}

@@ -1,0 +1,38 @@
+{if $errors}
+<div class="fullmaincontentwidth">
+    <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="vertical-align: top; padding: 10px 0px 10px 10px;">
+                    <span class="ui-icon ui-icon-alert" style="float: left; margin: 0px 5px 0px 0px;"></span><strong>{#attantion_there_are_errors#}:</strong><br/>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top; padding: 0px 0px 15px 30px;">
+                    <ul style="margin: 0px 0px 0px 15px;list-style-position: outside;">
+                    {foreach item=error from=$errors}
+                        <li>{$error->msg}</li>
+                    {/foreach}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<br/>
+{else}
+    {if $successmsg}
+    <div class="fullmaincontentwidth">
+        <div class="ui-state-highlight ui-corner-all" style="padding: 0 .7em;">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="vertical-align: top; padding: 10px 0px 10px 10px;">
+                        <span class="ui-icon ui-icon-check" style="float: left; margin: 0px 5px 0px 0px;"></span><strong>{$successmsg}</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br/>
+    {/if}
+{/if}

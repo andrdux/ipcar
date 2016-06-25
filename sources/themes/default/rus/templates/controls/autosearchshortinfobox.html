@@ -1,0 +1,56 @@
+<div class="box searchbox">
+    <div class="imgcontainer">
+        <a href="/auto/{$auto->mark_name|strip:''}/{$auto->model_name|strip:''}/{#auto_sell_in_url#}_{$auto->mark_name|strip:''}_{$auto->model_name|strip:''}_{$auto->id}.html" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}">{if $auto->smallphotoname}<img src="{$auto->photodir}/{$auto->smallphotoname}" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" border='0'/>{else}<img src="{$configuration->cssroot}/images/nophoto90x90.gif" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" border='0'/>{/if}</a><br/>
+        {if $auto->premiumstatus > 0}
+            <span class="premium">{#premium#}</span>&nbsp;
+        {/if}
+        {if $auto->urgent == 1}
+            <span class="urgent">{#urgent#}</span>
+        {/if}
+    </div>
+
+    <div class="infocolumn1">
+        <h2><a href="/auto/{$auto->mark_name|strip:''}/{$auto->model_name|strip:''}/{#auto_sell_in_url#}_{$auto->mark_name|strip:''}_{$auto->model_name|strip:''}_{$auto->id}.html" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}">{#sell#}&nbsp;{$auto->mark_name} {$auto->model_name}</a></h2>
+        {if $auto->modification}<h3><a href="/auto/{$auto->mark_name|strip:''}/{$auto->model_name|strip:''}/{#auto_sell_in_url#}_{$auto->mark_name|strip:''}_{$auto->model_name|strip:''}_{$auto->id}.html" title="{#buy#} {$auto->mark_name} {$auto->model_name} {$auto->modification}">{$auto->modification}</a></h3><br/>{else}<br/><br/>{/if}
+        <b>{#year#}:</b>&nbsp;{$auto->year}<br/>
+        <b>{#mileage#}:</b>&nbsp;{$auto->mileage}<br/>
+        <b>{#kpp#}:</b>&nbsp;{$auto->kpp_name}
+        {if $auto->sold > 0}<br/><span class="sold">{#sold#}</span>{/if}
+    </div>
+
+    <div class="infocolumn2">
+        <div class="pricelocation">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="width:100%;"></td>
+                    <td class="headerinfoimg"><img src="{$configuration->cssroot}/images/city.png" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}"/></td>
+                    <td class="headerinfo">{$auto->city_name}</td>
+                    <td class="headerinfoimg"><img src="{$configuration->cssroot}/images/price.png" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}"/></td>
+                    <td class="headerinfo">{$configuration->currency}{$auto->price}</td>
+                </tr>
+            </table>
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td style="width:100%;"></td>
+                    <td class="headerinfoimg"><img src="{$configuration->cssroot}/images/date.png" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}" alt="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}"/></td>
+                    <td class="headerinfodate">{$auto->updated|date_format:"%d.%m.%Y"}</td>
+                </tr>
+            </table>
+        </div>
+        <div style="float: left;">
+            <b>{#fuel#}:</b>&nbsp;{$auto->fuel_name}<br/>
+            <b>{#transmission#}:</b>&nbsp;{$auto->transmission_name}<br/>
+            <b>{#engine_volume#}:</b>&nbsp;{$auto->volume}
+        </div>
+        <div style="float: left;">
+            <a href="/search/autocheaper/{$auto->mark_name|strip:''}/{$auto->model_name|strip:''}/{$auto->city_name|strip:''}/{$auto->id}/" title="{#find_cheaper#} {$auto->mark_name} {$auto->model_name} {#in_city_short#} {$auto->city_name}">{#find_cheaper#}</a>
+        </div>
+        <div class="btndetails">
+            <div class="linkbutton" onclick="return gotoDetailsPage/('/auto/{$auto->mark_name|strip:''}/{$auto->model_name|strip:''}/{#auto_sell_in_url#}_{$auto->mark_name|strip:''}_{$auto->model_name|strip:''}_{$auto->id}.html');"><a href="/auto/{$auto->mark_name|strip:''}/{$auto->model_name|strip:''}/{#auto_sell_in_url#}_{$auto->mark_name|strip:''}_{$auto->model_name|strip:''}_{$auto->id}.html" title="{#sell#} {$auto->mark_name} {$auto->model_name} {$auto->modification}">{#more_details#}</a></div>
+        </div>
+    </div>
+
+    <div style="clear: both;">
+    </div>
+</div>
+

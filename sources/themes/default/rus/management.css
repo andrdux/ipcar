@@ -1,0 +1,244 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family: Tahoma, Verdana, Arial;
+    font-size: 14px;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.stdText, .shortcontrol{
+    border: 1px solid #abadb3;
+    margin: 3px 0px 5px 0px !important;
+    background-color:#ffffff;
+    color: #000000;
+    font-size: 12px;
+    width: 200px;
+}
+
+.shortcontrol
+{
+    width:62px !important;
+}
+
+.stdbutton
+{
+    border: none 0px !important;
+    width: 126px;
+    height: 20px;
+    background: url("images/stdbutton.gif") #d6d6d6 top left no-repeat;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.bigbutton
+{
+    border: none 0px !important;
+    width: 170px;
+    height: 20px;
+    background: url("images/bigbutton.gif") #d6d6d6 top left no-repeat;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.separatorline
+{
+    clear: both;
+    color: #ffffff;
+    width: 98%;
+    height: 25px;
+    background-color: #000000;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 10px 0px;
+}
+
+.separatorline h2
+{
+    font-size: 12px;
+    margin: 0px 0px 0px 5px;
+    line-height: 25px;
+}
+
+a, a:hover, a:visited
+{
+    color:#0000ff;
+    font-size: 12px;
+    text-decoration: underline;
+    font-weight: bold;
+    margin: 0px 0px 0px 0px;
+}
+
+.stdtable
+{
+    border:none 0px;
+    width: 980px;
+}
+
+.hcStandard, .hcHighlite
+{
+  font-size: 12px;
+  font-weight:bold;
+  text-align: center;
+  vertical-align: middle;
+  height:30px;
+  color:#000000;
+  padding:0px 3px 0px 3px;
+}
+
+.hcStandard
+{
+    background-color: #e2e2e2;
+}
+
+.hcHighlite
+{
+    background-color: #c8c8c8;
+}
+
+.cStandard, .cHighlite, .cHighlite2
+{
+   font-size: 12px;
+   font-weight:normal;
+   text-align: center;
+   vertical-align: middle;
+   height:100px;
+   padding:0px 3px 0px 3px;
+}
+
+.cStandard
+{
+    background-color: #ffffff;
+}
+
+.cHighlite
+{
+    background-color: #e2e2e2;
+}
+
+.cHighlite2
+{
+    background-color: #c8c8c8;
+}
+
+.cuStandard, .cuHighlite, .cuHighlite2
+{
+   font-size: 12px;
+   font-weight:normal;
+   text-align: center;
+   vertical-align: middle;
+   padding:0px 3px 0px 3px;
+   height:30px;
+}
+
+.cuStandard
+{
+    background-color: #ffffff;
+}
+
+.cuHighlite
+{
+    background-color: #e2e2e2;
+}
+
+.cuHighlite2
+{
+    background-color: #c8c8c8;
+}
+
+.nowrap
+{
+    white-space: nowrap;
+}
+
+.errorcontrol
+{
+    border: 1px solid #cd0a0a !important;
+    background-color: #ffaaaa !important;
+}
+
+.linkbutton
+{
+    border: none 0px !important;
+    width: 126px;
+    height: 20px;
+    background: url("images/stdbutton.gif") #d6d6d6 top left no-repeat;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: top;
+    cursor:pointer;
+}
+
+.linkbutton a, .linkbutton a:hover, .linkbutton a:visited
+{
+    font-weight: bold;
+    font-size: 12px;
+    color: #000000;
+    text-decoration: none;
+    line-height: 19px;
+}
+
+.pager{
+    width:100%;
+    text-align: right;
+}
+
+.pager .stdPage, .pager .activePage{
+    float:left;
+    min-width: 20px;
+    height: 20px;
+    border: solid 1px #247ca5;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    margin: 0px 0px 0px 5px;
+}
+
+.pager .stdPage{
+    background-color: #ffffff;
+    color: #247ca5;
+}
+
+.pager .activePage{
+    background-color: #247ca5;
+    color: #ffffff;
+}
+
+.pager .stdPage a, .pager .stdPage a:hover, .pager .stdPage a:visited
+{
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    color: #247ca5;
+    margin:0px 0px 0px 0px;
+}
+
+.pager .activePage a, .pager .activePage a:hover, .pager .activePage a:visited
+{
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    color: #ffffff;
+    margin:0px 0px 0px 0px;
+}
+
+#dvLeftMenu{
+    width:250px;
+}
+
+.leftMenu a, .leftMenu a:hover, .leftMenu a:visited
+{
+    color:#0000ff;
+    font-size: 12px;
+    text-decoration: underline;
+    font-weight: bold;
+    margin: 0px 0px 0px 0px;
+}
+
+#tblListOfAuto img{
+    border:none 0px;
+}

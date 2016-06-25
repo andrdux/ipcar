@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteBase /
+RewriteRule ^(.*)auto/photo/(.*)/(.*)_(.*)_(.*).html$ $1photogallery.php?autoid=$5
+RewriteRule ^(.*)auto/(.*)/(.*)/(.*)_(.*)_(.*)_(.*).html$ $1autodetails.php?autoid=$7
+RewriteRule ^(.*)search/automodel/(.*)/(.*)/$ /?action=search&id_model=$3
+RewriteRule ^(.*)search/autobrand/(.*)/(.*)/$ /?action=search&id_mark=$3
+RewriteRule ^(.*)search/autocheaper/(.*)/(.*)/(.*)/(.*)/$ /?action=searchcheaperauto&autoid=$5
+RewriteRule ^(.*)sell-car.html(.*)$ /addauto.php$2
+RewriteRule ^(.*)car-brands.html(.*)$ /autobrands.php$2

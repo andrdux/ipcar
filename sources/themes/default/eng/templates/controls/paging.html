@@ -1,0 +1,22 @@
+{if $numOfPages > 1}
+<div class="pager">
+    <div style="float:right;">
+        {if $pagesFrom > 1}
+            <div class="stdPage"><a href="{$scriptName}?page=0" title="{#pager_start#}" onclick="return goToSearchPage(0);" >&lt;&lt;</a></div>
+            <div class="stdPage"><a href="{$scriptName}?page={$pagesFrom-2}" title="{#pager_previous#}" onclick="return goToSearchPage({$pagesFrom-2});" >&lt;</a></div>
+        {/if}
+        {section name=pager start=$pagesFrom loop=$pagesTo step=1}
+            {if ($smarty.section.pager.index-1) == $page}
+                <div class="activePage">{$smarty.section.pager.index}</div>
+            {else}
+                <div class="stdPage"><a href="{$scriptName}?page={$smarty.section.pager.index-1}" onclick="return goToSearchPage({$smarty.section.pager.index-1});" >{$smarty.section.pager.index}</a></div>
+            {/if}
+        {/section}
+        {if $pagesTo < ($numOfPages + 1)}
+            <div class="stdPage"><a href="{$scriptName}?page={$pagesTo-1}" title="{#pager_next#}" onclick="return goToSearchPage({$pagesTo-1});" >&gt;</a></div>
+            <div class="stdPage"><a href="{$scriptName}?page={$numOfPages-1}" title="{#pager_end#}" onclick="return goToSearchPage({$numOfPages-1});" >&gt;&gt;</a></div>
+        {/if}
+    </div>
+    <div style="clear:both;"></div>
+</div>
+{/if}

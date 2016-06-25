@@ -1,0 +1,38 @@
+<div class="box editbox">
+    {include file="controls/errorsummary.html"}
+
+    <form id="contactform" name="contactform" action="contacts.php?action=send" method="post">
+        <div class="separatorline">
+            <h2>{#quick_contact_form#}</h2>
+        </div>
+
+        <div style="float:left;width:200px;padding: 0px 0px 0px 0px;">
+            <label for="fio">*{#fullname#}</label><br/>
+            <input type="text" id="fio" name="fio" maxlength="100" value="{$fio}" class="editText"/><br/>
+
+            <label for="email">*{#email#}</label><br/>
+            <input type="text" id="email" name="email" maxlength="55" value="{$email}" class="editText"/><br/>
+
+            <label for="message">*{#message#}</label><br/>
+            <textarea id="message" name="message" style="width:200px;">{$message}</textarea>
+        </div> 
+        <div style="float:left;width:475px;padding: 0px 0px 0px 25px;">
+            {#contacts_text#}<br/><br/>
+            <img src="handlers/captcha.php" width="200px" height="50px" alt="{#validation_code#}" title="{#validation_code#}"/><br/>
+            <label for="validcode">*{#validation_code#}</label><br/>
+            <input type="text" id="validcode" name="validcode" class="editText"/>
+        </div>
+        <div class="btncontainer">
+            <input type="submit" value="{#send_message#}" class="bigbutton"/>
+        </div>
+    </form>
+</div>
+{if $configuration->enableAdvertisement}
+    <br/>
+    <div class="box detailsbox">
+        <img src="http://placehold.it/336x280" />
+
+        <img src="http://placehold.it/336x280" />
+    </div>
+{/if}
+{include file="controls/markerrorfields.html"}

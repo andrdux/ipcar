@@ -1,0 +1,51 @@
+<div class="separatorline">
+    <h2>{#users#}</h2>
+</div>
+
+<input type="hidden" id="searchparams" name="searchparams" value="{$searchparams}"/>
+
+<form id="marketform" name="marketform" action="users.php" method="get">
+    <div style="float:left;padding: 0px 0px 15px 0px;">
+        <label for="email"></label>{#email#}:&nbsp;
+        <input type="text" id="email" name="email" value="{$email}" class="editText" /><br/>
+    </div>
+
+    <div style="float:left;padding: 0px 0px 15px 25px;">
+        <input type="submit" value="{#show#}" class="bigbutton"/>
+    </div>
+</form>
+
+<div style="clear:both;">
+{if $listOfUsers}
+<table id="tblListOfUsers" class="stdtable" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="hcStandard">{#id#}</td>
+        <td class="hcHighlite">{#fullname#}</td>
+        <td class="hcStandard">{#email#}</td>
+        <td class="hcHighlite">{#phone1#}</td>
+        <td class="hcStandard">{#status#}</td>
+        <td class="hcHighlite">{#ip#}</td>
+        <td class="hcStandard">{#actions#}</td>
+    </tr>
+    {foreach key=nr item=user from=$listOfUsers}
+    <tr>
+        <td class="cuStandard">{$user->id}</td>
+        <td {if ($nr % 2) == 0 }class="cuHighlite"{else}class="cuHighlite2"{/if}>{$user->fio}</td>
+        <td {if ($nr % 2) == 0 }class="cuStandard"{else}class="cuHighlite"{/if}>{$user->email}</td>
+        <td {if ($nr % 2) == 0 }class="cuHighlite"{else}class="cuHighlite2"{/if}>{$user->phone1}</td>
+        <td {if ($nr % 2) == 0 }class="cuStandard"{else}class="cuHighlite"{/if}>{if $user->active}{#active#}{else}{#locked#}{/if}</td>
+        <td {if ($nr % 2) == 0 }class="cuHighlite nowrap"{else}class="cuHighlite2 nowrap"{/if}>{$user->ip}</td>
+        <td class="cuStandard"><a href="#" title="{#remove_user#}" onclick="return confirmationRemoveUser({$user->id});"><img src="{$configuration->cssroot}/images/mremove.jpg" title="{#remove_user#}" alt="{#remove_user#}"/></a></td>
+    </tr>
+    {/foreach}
+</table>
+{else}
+    {#no_users_for_search_criteria#}
+{/if}
+</div>
+
+<input type="hidden" id="hdnRemoveMessage" value="{#really_remove_user#}"/>
+<input type="hidden" id="hdnCurrentPage" value="{$page}"/>
+
+{include file="controls/paging.html"}
+

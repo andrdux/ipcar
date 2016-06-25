@@ -1,0 +1,7 @@
+{if $errors}
+<script type="text/javascript">
+{foreach item=error from=$errors}
+   markControlWithError('{$error->control_id}');
+{/foreach}
+</script>
+{/if}

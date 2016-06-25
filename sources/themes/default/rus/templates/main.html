@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>{if $page_title}{$page_title}{else}{#head_title#}{/if}</title>
+        <meta name="keywords" content="{if $page_keywords}{$page_keywords}{else}{#meta_keywords#}{/if}" />
+        <meta name="description" content="{if $page_description}{$page_description}{else}{#meta_description#}{/if}" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="robots" content="index, follow" />
+        <meta name="telderi" content="d34603d6fefc0352995f389e37e73b24" />
+      {if $page_css}
+       {foreach from=$page_css item="cssfile"}
+        <link type="text/css" rel="stylesheet" href="{$configuration->cssroot}/{$cssfile}" />
+       {/foreach}
+      {/if}
+      {if $page_js}
+       {foreach from=$page_js item="jsfile"}
+        <script type="text/javascript" src="{$configuration->wwwroot}/scripts/{$jsfile}"></script>
+       {/foreach}
+      {/if}
+      {literal}
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-20771483-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+      {/literal}
+    </head>
+    <body>
+        {if $page_name eq "PhotoGallery"}
+            {include file="controls/gallery.html"}
+        {else}
+           <div id="headerWrapper">
+              <div id="header">
+                  <p id="headerMenu">
+                    <a href="/" title="{#auto_market#}">{#auto_market#}</a>
+                    <a href="/sell-car.html" title="{#sell_auto#}">{#sell_auto#}</a>
+                    <a href="/car-brands.html" title="{#auto_marks#}">{#auto_marks#}</a>
+                    <a href="/usermenu.php" title="{#my_auto#}">{#my_auto#}</a>
+                    <a href="/contacts.php" title="{#contacts#}">{#contacts#}</a>
+                    {if $LoggedUser}
+                    <a href="/login.php?action=logout" title="{#logout#}">{#logout#}</a>
+                    {else}
+                    <a href="/registeruser.php" title="{#register_user#}">{#register_user#}</a>
+                    {/if}
+                  </p>
+                  <div id="entryText">
+                    <table cellpadding="2" cellspacing="2" border="0">
+                        <tr>
+                            <td style="width:300px;vertical-align: top;"><h1>{if $entry_text}{$entry_text}{else}{#entry_text#}{/if}</h1></td>
+                            <td style="width:250px;vertical-align: top;">
+                                {if $configuration->enableAdvertisement}
+                                    <img src="http://placehold.it/234x60" />                                    
+                                {/if}
+                            </td>
+                        </tr>
+                    </table>
+                  </div>
+              </div>
+           </div>
+          <div id="mainMenuWrapper">
+              <div id="mainMenu">
+                  <table cellpadding="0" cellspacing="0">
+                      <tr>
+                          <td><h2><a href="/" title="{#auto_market#}">{#auto_market#}</a></h2></td>
+                          <td class="mainMenuSep">&nbsp;</td>
+                          <td><h2><a href="/sell-car.html" title="{#sell_auto#}">{#sell_auto#}</a></h2></td>
+                          <td class="mainMenuSep">&nbsp;</td>
+                          <td><h2><a href="/car-brands.html" title="{#auto_marks#}">{#auto_marks#}</a></h2></td>
+                          <td class="mainMenuSep">&nbsp;</td>
+                          <td><h2><a href="/usermenu.php" title="{#my_auto#}">{#my_auto#}</a></h2></td>
+                          <td class="mainMenuSep">&nbsp;</td>
+                          <td><h2><a href="/contacts.php" title="{#contacts#}">{#contacts#}</a></h2></td>
+                      </tr>
+                  </table>
+              </div>
+          </div>
+          <div id="contentWrapper">
+               <div id="mainContentWrapper">
+                {if $page_name eq "AutoBrands"}
+                    <div id="fullContent">
+                        {include file="controls/autobrands.html"}
+                    </div>
+                {else}
+                  <div id="mainContent">
+                        {if $page_name eq "EditAuto"}
+                            {include file="controls/editauto.html"}
+                        {/if}
+                        {if $page_name eq "MyAuto"}
+                            {include file="controls/myauto.html"}
+                        {/if}
+                        {if $page_name eq "Login"}
+                            {include file="controls/login.html"}
+                        {/if}
+                        {if $page_name eq "RegisterUser"}
+                            {include file="controls/registeruser.html"}
+                        {/if}
+                        {if $page_name eq "RestorePassword"}
+                            {include file="controls/restorepassword.html"}
+                        {/if}
+                        {if $page_name eq "EditProfile"}
+                            {include file="controls/editprofile.html"}
+                        {/if}
+                        {if $page_name eq "AutoMarket"}
+                            {include file="controls/automarket.html"}
+                        {/if}
+                        {if $page_name eq "SearchResult"}
+                            {include file="controls/searchresult.html"}
+                        {/if}
+                        {if $page_name eq "AutoDetails"}
+                            {include file="controls/autodetails.html"}
+                        {/if}
+                        {if $page_name eq "UserMenu"}
+                            {include file="controls/usermenu.html"}
+                        {/if}
+                        {if $page_name eq "Contacts"}
+                            {include file="controls/contacts.html"}
+                        {/if}
+                  </div>
+                  <div id="rightContent">
+                    {include file="controls/quicksearch.html"}
+                  </div>
+                  <div style="clear:both"></div>
+                {/if}
+               </div>
+           </div>
+           <div id="footerWrapper">
+              <div id="footer">
+                  <p id="footerMenu">
+                    <a href="/" title="{#auto_market#}">{#auto_market#}</a>
+                    <a href="/sell-car.html" title="{#sell_auto#}">{#sell_auto#}</a>
+                    <a href="/car-brands.html" title="{#auto_marks#}">{#auto_marks#}</a>
+                    <a href="/usermenu.php" title="{#my_auto#}">{#my_auto#}</a>
+                    <a href="/contacts.php" title="{#contacts#}">{#contacts#}</a>
+                    {if $LoggedUser}
+                    <a href="/login.php?action=logout" title="{#logout#}">{#logout#}</a>
+                    {else}
+                    <a href="/registeruser.php" title="{#register_user#}">{#register_user#}</a>
+                    {/if}
+                  </p>
+                  <p id="copyright">Copyright &copy; 2016 ipcar.net</p>
+                  {literal}
+                    <br/>
+                    <center>
+                        <!-- Counters should be here-->
+                    </center>
+                  {/literal}
+              </div>
+           </div>
+        {/if}
+
+        <div id="blockUIMessage" style="display:none;">
+            <span style="color:#000000 !important;">{#please_wait#}</span>
+        </div>
+        <input type="hidden" id="loaderImageUrl" value="{$configuration->cssroot}/images/loadersmall.gif"/>
+
+    </body>
+</html>
