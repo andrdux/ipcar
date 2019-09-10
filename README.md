@@ -2,13 +2,6 @@
 
 PHP script for website which allows to buy & sell used cars.  
 
-Examples:  
-* English: eng.ipcar.net  
-* Russian: ipcar.net  
-
-
-
-
 # Server requirements:
 * PHP 5 or higher
 * MySQL 5.3 or higher
