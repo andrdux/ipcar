@@ -6,7 +6,6 @@ Examples:
 * English: eng.ipcar.net  
 * Russian: ipcar.net  
 
-Sponsored by [software development company DuxTeam](http://duxteam.com)  
 
 
 
